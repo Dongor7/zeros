@@ -1,53 +1,18 @@
 function getZerosCount(number) {
-    let numbers = [];
 
-    for (let i = number; i > 0; i--){
-        numbers.push(i);
-    }
+    let zeros = 0;
 
-    return getZeroCount(numbers);
-}
+    for (let i = 5; i <= number; i += 5) {
 
-function getDigitCount(allFactorNum, digit){
+        let num = i;
 
-    let count = 0;
-
-    for(let elem of allFactorNum){
-
-        if(digit !== 10){
-            while(true){
-                if((elem % digit === 0) && (elem % 10 !== 0)) {
-                    count++;
-                    elem /= digit;
-                    continue;
-                }
-                if(elem === 50){
-                    count++;
-                    elem /= digit;
-                }
-                else break;
-            }
-        }
-        else{
-            while(elem % digit === 0){
-                count++;
-                elem /= digit;
-            }
+        while (num % 5 === 0) {
+            num /= 5;
+            zeros++;
         }
     }
 
-    return count;
+    return zeros;
 }
-
-function getZeroCount(allFactorNum){
-
-    let two  = getDigitCount(allFactorNum, 2);
-    let five = getDigitCount(allFactorNum, 5);
-    let ten  = getDigitCount(allFactorNum, 10);
-
-    return two < five ? two + ten : five + ten;
-}
-
-console.log(getZerosCount(10));
 
 module.exports = getZerosCount;
